@@ -68,3 +68,5 @@ slice2 = text[-1:-6:2] # 간격 양수, 역방향 → 빈 문자열
 print(slice1)               # (빈 문자열)
 print(slice2)               # (빈 문자열)
 print(len(slice1 + slice2)) # 0
+
+
