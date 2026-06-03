@@ -38,7 +38,7 @@ git push
 ```
 
 ---
-01 파이썬 기본
+# 01 파이썬 기본
 
 ## 1. 산술 연산자
 ```python
@@ -131,4 +131,214 @@ print(a == c)   # True  값이 같다
 ✅ 비트 연산자 (& | ^ ~ << >>)
 ✅ 기타 연산자 (할당 / 멤버십 / 식별)
 ```
+# 제어문 / 반복문 
 
+## 1. 조건문 (if / elif / else)
+```python
+score = 85
+
+if score >= 90:
+    print("A")
+elif score >= 80:   # 위 조건 False일 때
+    print("B")      # 85 >= 80 → True → "B" 출력
+elif score >= 70:
+    print("C")
+else:               # 모든 조건 False일 때
+    print("F")
+```
+
+---
+
+## 2. 삼항 연산자
+```python
+x = 10
+result = "양수" if x > 0 else "음수"
+print(result)  # 양수
+```
+
+---
+
+## 3. for 문
+```python
+# 리스트 순회
+nums = [1, 2, 3, 4, 5]
+for n in nums:
+    print(n)  # 1 2 3 4 5
+
+# range 사용
+for i in range(5):         # 0 1 2 3 4
+    print(i)
+
+for i in range(1, 6):      # 1 2 3 4 5
+    print(i)
+
+for i in range(0, 10, 2):  # 0 2 4 6 8 (2씩 증가)
+    print(i)
+
+# enumerate (인덱스 + 값)
+fruits = ["apple", "banana", "cherry"]
+for i, fruit in enumerate(fruits):
+    print(i, fruit)
+# 0 apple
+# 1 banana
+# 2 cherry
+
+# zip (두 리스트 동시 순회)
+names = ["Kim", "Lee", "Park"]
+scores = [85, 92, 78]
+for name, score in zip(names, scores):
+    print(name, score)
+# Kim 85
+# Lee 92
+# Park 78
+```
+
+---
+
+## 4. while 문
+```python
+# 기본
+cnt = 0
+while cnt < 5:
+    print(cnt)  # 0 1 2 3 4
+    cnt += 1
+
+# 무한루프 + break
+while True:
+    n = int(input("숫자 입력: "))
+    if n == 0:
+        break   # 0 입력하면 종료
+    print(n)
+```
+
+---
+
+## 5. break / continue / pass
+```python
+# break → 반복문 완전 종료
+for i in range(10):
+    if i == 5:
+        break       # 5에서 멈춤
+    print(i)        # 0 1 2 3 4
+
+# continue → 해당 회차 건너뜀
+for i in range(5):
+    if i == 2:
+        continue    # 2는 건너뜀
+    print(i)        # 0 1 3 4
+
+# pass → 아무것도 안 함 (자리만 채움)
+for i in range(5):
+    if i == 2:
+        pass        # 그냥 넘어감
+    print(i)        # 0 1 2 3 4
+```
+
+---
+
+## 6. 중첩 반복문
+```python
+for i in range(2, 10):
+    for j in range(1, 10):
+        print(f"{i} x {j} = {i*j}")
+```
+
+---
+
+## 7. for - else / while - else
+```python
+# break 없이 정상 종료되면 else 실행
+for i in range(5):
+    if i == 10:     # 조건 안 걸림
+        break
+else:
+    print("정상 종료")  # 출력됨
+
+for i in range(5):
+    if i == 3:      # break 걸림
+        break
+else:
+    print("정상 종료")  # 출력 안 됨
+```
+
+---
+
+## 8. match 문 (Python 3.10+)
+```python
+# 기본 match
+command = "go"
+
+match command:
+    case "go":
+        print("이동")       # 출력됨
+    case "stop":
+        print("정지")
+    case "back":
+        print("후진")
+    case _:                 # default (else 역할)
+        print("알 수 없음")
+
+# 여러 값 동시 매칭
+status = 404
+
+match status:
+    case 200:
+        print("OK")
+    case 400 | 404:         # 400 또는 404
+        print("클라이언트 오류")  # 출력됨
+    case 500:
+        print("서버 오류")
+    case _:
+        print("기타")
+
+# 튜플 매칭
+point = (0, 1)
+
+match point:
+    case (0, 0):
+        print("원점")
+    case (0, y):            # x=0, y는 아무 값
+        print(f"y축: {y}")  # y축: 1 출력
+    case (x, 0):
+        print(f"x축: {x}")
+    case (x, y):
+        print(f"좌표: {x}, {y}")
+
+# 조건 추가 (guard)
+score = 85
+
+match score:
+    case n if n >= 90:      # n에 score 값이 들어옴
+        print("A")
+    case n if n >= 80:
+        print("B")          # 출력됨
+    case n if n >= 70:
+        print("C")
+    case _:
+        print("F")
+```
+
+---
+
+**if vs match 비교:**
+
+| | if / elif | match |
+|--|--|--|
+| 범위 조건 | ✅ 자유롭게 | ⚠️ guard 필요 |
+| 값 매칭 | 가능 | ✅ 더 깔끔 |
+| 패턴 매칭 | ❌ | ✅ 튜플, 리스트 등 |
+| Python 버전 | 전체 | 3.10 이상만 |
+
+---
+
+**README.md 목차 추가:**
+```
+✅ 조건문 (if / elif / else)
+✅ 삼항 연산자
+✅ for문 (range / enumerate / zip)
+✅ while문
+✅ break / continue / pass
+✅ 중첩 반복문
+✅ for-else / while-else
+✅ match문 (3.10+)
+```
