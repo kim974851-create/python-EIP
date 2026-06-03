@@ -440,3 +440,136 @@ print(s[-6:])   # Python (뒤에서 6번째부터)
 ✅ 인덱싱 (양수 / 음수)
 ✅ 슬라이싱 [시작:끝:간격]
 ```
+# 파이썬 문자열 메서드
+
+## 1. 문자열 변환 관련 메서드
+```python
+s = "hello python"
+
+print(s.upper())       # HELLO PYTHON    소문자 → 대문자
+print(s.lower())       # hello python    대문자 → 소문자
+print(s.capitalize())  # Hello python    첫 글자만 대문자
+print(s.title())       # Hello Python    단어마다 첫 글자 대문자
+print(s.swapcase())    # HELLO PYTHON    대소문자 반전
+
+s2 = "12345"
+print(s2.zfill(8))     # 00012345        앞을 0으로 채움
+```
+
+---
+
+## 2. 문자열 검색 및 확인
+```python
+s = "Hello Python"
+
+# 검색
+print(s.find("Python"))    # 6   왼쪽부터 찾아서 인덱스 반환
+print(s.find("Java"))      # -1  없으면 -1 반환
+print(s.index("Python"))   # 6   왼쪽부터 찾아서 인덱스 반환
+# print(s.index("Java"))   # ValueError! 없으면 오류 발생
+print(s.rfind("o"))        # 10  오른쪽부터 찾아서 인덱스 반환
+print(s.count("o"))        # 2   문자 개수 반환
+
+# 확인
+print(s.startswith("Hello"))  # True   "Hello"로 시작하는지
+print(s.endswith("Java"))     # False  "Java"로 끝나는지
+
+s2 = "hello123"
+print(s2.isalpha())   # False  문자만 있는지 (숫자 포함이라 False)
+print(s2.isdigit())   # False  숫자만 있는지
+print(s2.isalnum())   # True   문자+숫자만 있는지
+print(s2.isspace())   # False  공백만 있는지
+print(s2.isupper())   # False  전부 대문자인지
+print(s2.islower())   # True   전부 소문자인지 (숫자 제외)
+```
+
+---
+
+## 3. 문자열 대체 및 수정
+```python
+s = "Hello Python Python"
+
+# replace → 문자열 교체
+print(s.replace("Python", "Java"))     # Hello Java Java
+print(s.replace("Python", "Java", 1)) # Hello Java Python (1개만 교체)
+
+# f-string (문자열 포맷)
+name = "Kim"
+age = 25
+print(f"{name}은 {age}살")           # Kim은 25살
+print(f"{3.14159:.2f}")              # 3.14  소수점 2자리
+print(f"{1000000:,}")                # 1,000,000  천 단위 구분
+print(f"{'Hi':>10}")                 # '        Hi'  오른쪽 정렬
+print(f"{'Hi':<10}")                 # 'Hi        '  왼쪽 정렬
+print(f"{'Hi':^10}")                 # '    Hi    '  가운데 정렬
+
+# format()
+print("{}은 {}살".format(name, age)) # Kim은 25살
+print("{0}과 {1}".format("A", "B"))  # A과 B
+```
+
+---
+
+## 4. 문자열 분리 및 결합
+```python
+s = "apple,banana,cherry"
+
+# split → 문자열 분리
+print(s.split(","))         # ['apple', 'banana', 'cherry']
+print(s.split(",", 1))      # ['apple', 'banana,cherry'] (1번만 분리)
+
+s2 = "Hello Python World"
+print(s2.split())           # ['Hello', 'Python', 'World'] (공백 기준)
+
+# join → 리스트 결합
+words = ["apple", "banana", "cherry"]
+print(",".join(words))      # apple,banana,cherry
+print(" ".join(words))      # apple banana cherry
+print("-".join(words))      # apple-banana-cherry
+
+# splitlines → 줄 단위 분리
+s3 = "Hello\nPython\nWorld"
+print(s3.splitlines())      # ['Hello', 'Python', 'World']
+```
+
+---
+
+## 5. 문자열 조작
+```python
+s = "   Hello Python   "
+
+# 공백 제거
+print(s.strip())    # "Hello Python"   양쪽 공백 제거
+print(s.lstrip())   # "Hello Python   " 왼쪽 공백 제거
+print(s.rstrip())   # "   Hello Python" 오른쪽 공백 제거
+
+# 특정 문자 제거
+s2 = "###Hello###"
+print(s2.strip("#"))   # Hello   양쪽 # 제거
+print(s2.lstrip("#"))  # Hello###
+print(s2.rstrip("#"))  # ###Hello
+
+# 정렬
+s3 = "Hello"
+print(s3.center(11))        # "   Hello   "  가운데 정렬
+print(s3.center(11, "-"))   # "---Hello---"  - 로 채움
+print(s3.ljust(10))         # "Hello     "   왼쪽 정렬
+print(s3.rjust(10))         # "     Hello"   오른쪽 정렬
+
+# 인코딩
+s4 = "Hello"
+encoded = s4.encode("utf-8")   # b'Hello'  bytes로 변환
+decoded = encoded.decode("utf-8")  # Hello  다시 문자열로
+```
+
+---
+
+
+```
+✅ 문자열 변환 (upper / lower / capitalize / title / swapcase)
+✅ 문자열 검색 (find / index / rfind / count / startswith / endswith)
+✅ 문자열 확인 (isalpha / isdigit / isalnum / isspace)
+✅ 문자열 대체 (replace / f-string / format)
+✅ 문자열 분리·결합 (split / join / splitlines)
+✅ 문자열 조작 (strip / center / ljust / rjust / encode)
+```
