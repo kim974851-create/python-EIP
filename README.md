@@ -331,7 +331,7 @@ match score:
 
 ---
 
-**README.md 목차 추가:**
+
 ```
 ✅ 조건문 (if / elif / else)
 ✅ 삼항 연산자
@@ -341,4 +341,102 @@ match score:
 ✅ 중첩 반복문
 ✅ for-else / while-else
 ✅ match문 (3.10+)
+```
+# 파이썬 문자열 처리
+
+## 1. 문자열 생성
+```python
+# 작은따옴표
+s1 = 'Hello'
+
+# 큰따옴표
+s2 = "Hello"
+
+# 따옴표 혼용 (문자열 안에 따옴표 포함할 때)
+s3 = "It's a pen"     # 작은따옴표 포함
+s4 = 'He said "Hi"'  # 큰따옴표 포함
+
+# 이스케이프 문자
+s5 = "Hello\nWorld"   # \n → 줄바꿈
+s6 = "Hello\tWorld"   # \t → 탭
+s7 = "He said \"Hi\"" # \" → 큰따옴표 출력
+
+print(s5)
+# Hello
+# World
+
+print(s6)  # Hello	World
+
+# 문자열 반복 / 연결
+s = "Hi" + " " + "Python"  # Hi Python
+s = "Ha" * 3               # HaHaHa
+```
+
+---
+
+## 2. 여러 줄 문자열
+```python
+# 삼중 따옴표 (''' 또는 """)
+s1 = """Hello
+Python
+World"""
+
+print(s1)
+# Hello
+# Python
+# World
+
+s2 = '''첫째 줄
+둘째 줄
+셋째 줄'''
+
+print(s2)
+# 첫째 줄
+# 둘째 줄
+# 셋째 줄
+
+# 줄바꿈 없이 여러 줄 작성 (\ 사용)
+s3 = "Hello " \
+     "Python " \
+     "World"
+print(s3)  # Hello Python World
+```
+
+---
+
+## 3. 문자열 인덱싱과 슬라이싱
+```python
+s = "Python"
+#    012345   (양수 인덱스)
+#   -6-5-4-3-2-1  (음수 인덱스)
+
+# 인덱싱
+print(s[0])   # P  (첫 번째)
+print(s[3])   # h
+print(s[-1])  # n  (마지막)
+print(s[-2])  # o
+
+# 슬라이싱 → s[시작:끝:간격]
+print(s[0:3])   # Pyt  (0,1,2 → 3 미포함)
+print(s[2:])    # thon (2부터 끝까지)
+print(s[:3])    # Pyt  (처음부터 3 미포함)
+print(s[:])     # Python (전체)
+print(s[::2])   # Pto  (2칸씩 건너뜀)
+print(s[::-1])  # nohtyP (역순)
+
+# 활용 예시
+s = "Hello Python"
+print(s[6:])    # Python
+print(s[:5])    # Hello
+print(s[-6:])   # Python (뒤에서 6번째부터)
+```
+
+---
+
+
+```
+✅ 문자열 생성 (따옴표 / 이스케이프 / 반복 / 연결)
+✅ 여러 줄 문자열 (삼중따옴표 / 백슬래시)
+✅ 인덱싱 (양수 / 음수)
+✅ 슬라이싱 [시작:끝:간격]
 ```
